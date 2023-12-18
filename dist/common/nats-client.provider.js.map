@@ -1,1 +1,0 @@
-{"version":3,"file":"nats-client.provider.js","sourceRoot":"","sources":["../../src/common/nats-client.provider.ts"],"names":[],"mappings":";;;AAAA,yDAAmF;AAE5E,MAAM,gBAAgB,GAAG,GAAgB,EAAE;IAChD,OAAO,kCAAkB,CAAC,MAAM,CAAC;QAC/B,SAAS,EAAE,yBAAS,CAAC,IAAI;QACzB,OAAO,EAAE;YACP,GAAG,EAAE,qBAAqB;SAC3B;KACF,CAAC,CAAC;AACL,CAAC,CAAC;AAPW,QAAA,gBAAgB,oBAO3B"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"nats-config.ts.js","sourceRoot":"","sources":["../../src/common/nats-config.ts.ts"],"names":[],"mappings":";;;AAEA,qGAAyF;AAE5E,QAAA,sBAAsB,GAAG,wDAAsB,CAAC,QAAQ,CAAC;IACpE,QAAQ,EAAE,wBAAwB;IAClC,SAAS,EAAE,YAAY;IACvB,cAAc,EAAE;QACd,GAAG,EAAE,uBAAuB;KAC7B;CACF,CAAC,CAAC"}
