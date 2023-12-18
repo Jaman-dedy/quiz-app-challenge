@@ -8,22 +8,24 @@ import {
   UseGuards,
   HttpStatus,
   HttpCode,
-  SerializeOptions,
   ValidationPipe,
   ParseIntPipe
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags, ApiHeader } from '@nestjs/swagger';
 import { QuestionService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-questions.dto';
 import { UpdateQuestionDto } from './dto/update-questions.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Roles } from '../roles/roles.decorator';
-import { RoleEnum } from '../roles/roles.enum';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from '../roles/roles.guard';
 
 @ApiBearerAuth()
+@ApiHeader({
+  name: 'Authorization',
+  description: 'Bearer token',
+  required: true,
+})
+@ApiTags('Questions')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
-@ApiTags('Quiz')
 @Controller({
   path: 'quizzes',
   version: '1',
@@ -31,12 +33,24 @@ import { RolesGuard } from '../roles/roles.guard';
 export class QuizController {
   constructor(private readonly QuestionService: QuestionService) { }
 
+  @ApiBearerAuth()
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'Bearer token',
+    required: true,
+  })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async createQuestion(@Body(new ValidationPipe()) createQuestionDto: CreateQuestionDto) {
     return await this.QuestionService.createQuestion({...createQuestionDto});
   }
 
+  @ApiBearerAuth()
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'Bearer token',
+    required: true,
+  })
   @Get()
   @HttpCode(HttpStatus.OK)
   getAllQuestions() {
@@ -44,6 +58,12 @@ export class QuizController {
   }
 
 
+  @ApiBearerAuth()
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'Bearer token',
+    required: true,
+  })
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   getQuestion(@Param('id', ParseIntPipe) id: number) {

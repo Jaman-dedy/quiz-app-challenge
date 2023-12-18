@@ -12,7 +12,6 @@ import { OptionEntity } from '../options/entities/options.entity';
 import { UserEntity } from '../users/entities/user.entity'
 import { ParticipantEntity } from '../participant/entities/participant.entity';
 import { LeaderboardController } from './leaderboard.controller'
-import { QuizSubscriberService } from './quiz-subscriber.service'
 import { natsStreamingTransport } from '../common/nats-config.ts'
 
 @Module({
@@ -27,7 +26,7 @@ import { natsStreamingTransport } from '../common/nats-config.ts'
         UserEntity
       ])],
   controllers: [QuizController, LeaderboardController],
-  providers: [IsExist, IsNotExist, QuizService, QuizSubscriberService],
+  providers: [IsExist, IsNotExist, QuizService],
   exports: [QuizService],
 })
 export class QuizModule {

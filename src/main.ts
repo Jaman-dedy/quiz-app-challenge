@@ -23,7 +23,7 @@ async function bootstrap() {
       'user-service-listener',
       'user-service-group',
       {
-        url: 'http://127.0.0.1:4222'
+        url: process.env.NATS_SERVER_URL
       } /* TransportConnectOptions */,
       {
         durableName: 'user-queue-group',

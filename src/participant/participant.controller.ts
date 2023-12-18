@@ -8,7 +8,7 @@ import {
   Param,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiHeader } from '@nestjs/swagger';
 import { EventPattern, Payload, Ctx } from '@nestjs/microservices';
 import { NatsStreamingContext } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 
@@ -17,6 +17,11 @@ import { ParticipantService } from './participant.service';
 import { Patterns } from '../contants/events.enum'
 
 @ApiBearerAuth()
+@ApiHeader({
+  name: 'Authorization',
+  description: 'Bearer token',
+  required: true,
+})
 @UseGuards(AuthGuard('jwt'))
 @ApiTags('Quiz')
 @Controller({

@@ -1,52 +1,368 @@
-# NestJS REST API boilerplate 🇺🇦
-
-[![image](https://github.com/brocoders/nestjs-boilerplate/assets/72293912/197da43e-02f4-4895-8d3e-b7a42a591c26)](https://github.com/new?template_name=nestjs-boilerplate&template_owner=brocoders)
-
-
-![github action status](https://github.com/brocoders/nestjs-boilerplate/actions/workflows/docker-e2e.yml/badge.svg)
-[![renovate](https://img.shields.io/badge/renovate-enabled-%231A1F6C?logo=renovatebot)](https://app.renovatebot.com/dashboard)
-[![Static Badge](https://img.shields.io/badge/supported_by-brocoders-d91965?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTMwIiBoZWlnaHQ9IjE4NyIgdmlld0JveD0iMCAwIDEzMCAxODciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI%2BCjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF83NzExXzQ4OTEpIj4KPHBhdGggZD0iTTc1Ljk5NjcgNDUuNzUwNkM2NS4xMDg5IDQ2Ljg2MSA1Ny45MjMgNTguNDA5NyA2Mi4yNzgxIDY4Ljg0OEwxMDguNDQyIDE4N0w3My42MDEzIDE1NS4wMTlIMzQuODQwOUMyMC42ODY4IDE1NS4wMTkgOS4zNjM0OSAxNDMuNDcgOS4zNjM0OSAxMjkuMDM0Vjk0LjYxMDVDOS4zNjM0OSA5Mi4xNjc1IDguNDkyNDYgODkuNzI0NSA2Ljc1MDQyIDg3Ljk0NzdMMCA4MS4wNjNMNi43NTA0MiA3NC4xNzgxQzguNDkyNDYgNzIuNDAxNCA5LjM2MzQ5IDY5Ljk1ODQgOS4zNjM0OSA2Ny41MTU0VjMxLjA5MjZDOS4zNjM0OSAxMy43Njk2IDIzLjA4MjEgMCAzOS44NDkyIDBINTguMTQwN0w3NS45OTY3IDQ1Ljc1MDZaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTI1LjY0NiAxMTIuMzc4Vjk0LjgzMjdDMTI1LjY0NiA5My43MjIyIDEyNi4wODEgOTIuNjExOCAxMjYuOTUyIDkxLjcyMzRMMTMwLjAwMSA4OC4zOTIxTDEyNi45NTIgODUuMDYwN0MxMjYuMDgxIDg0LjE3MjQgMTI1LjY0NiA4My4wNjE5IDEyNS42NDYgODEuOTUxNFY2OS43MzY1QzEyNS42NDYgNTYuNDExMSAxMTQuOTc2IDQ1Ljc1MDcgMTAyLjEyOCA0NS43NTA3SDc1Ljk5NzNMMTA1LjYxMiAxMzAuODExQzEwNS42MTIgMTMwLjgxMSAxMTAuNjIgMTMwLjgxMSAxMTAuODM4IDEzMC44MTFDMTE5LjExMyAxMjkuMDM1IDEyNS42NDYgMTIxLjQ4NCAxMjUuNjQ2IDExMi4zNzhaIiBmaWxsPSJ3aGl0ZSIvPgo8L2c%2BCjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzc3MTFfNDg5MSI%2BCjxyZWN0IHdpZHRoPSIxMzAiIGhlaWdodD0iMTg3IiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM%2BCjwvc3ZnPgo%3D&logoColor=d91965)](https://brocoders.com/)
+# Quiz challenge
 
 ## Description <!-- omit in toc -->
 
-NestJS REST API boilerplate for typical project
+Develop a backend for a real-time quiz application where users can join a quiz, answer questions, and see real-time results. We prefer that
+you use NestJS for the backend framework, NATS for real-time event handling, and PostgreSQL for data storage. However, you are free to
+use Node and other other event solution such as Kafka or RMQ.
 
-[Full documentation here](/docs/readme.md)
+## Tech stack
 
-Demo: <https://nestjs-boilerplate-test.herokuapp.com/docs>
-
-Frontend (React, Next.js): <https://github.com/brocoders/extensive-react-boilerplate>
-
-## Table of Contents <!-- omit in toc -->
-
-- [Features](#features)
-- [Quick run](#quick-run)
-- [Comfortable development](#comfortable-development)
-- [Links](#links)
-- [Automatic update of dependencies](#automatic-update-of-dependencies)
-- [Database utils](#database-utils)
-- [Tests](#tests)
-- [Tests in Docker](#tests-in-docker)
-- [Test benchmarking](#test-benchmarking)
-- [Contributors](#contributors)
-
+-  Nodejs/Nestjs
+- Posttres with Typeorm
+- Nats for real time events
 ## Features
 
-- [x] Database ([typeorm](https://www.npmjs.com/package/typeorm)).
-- [x] Seeding.
-- [x] Config Service ([@nestjs/config](https://www.npmjs.com/package/@nestjs/config)).
-- [x] Mailing ([nodemailer](https://www.npmjs.com/package/nodemailer)).
-- [x] Sign in and sign up via email.
-- [x] Social sign in (Apple, Facebook, Google, Twitter).
-- [x] Admin and User roles.
-- [x] I18N ([nestjs-i18n](https://www.npmjs.com/package/nestjs-i18n)).
-- [x] File uploads. Support local and Amazon S3 drivers.
-- [x] Swagger.
-- [x] E2E and units tests.
-- [x] Docker.
-- [x] CI (Github Actions).
+* As A User I'm able to register with username, email and password
+* As A user I'm able to login with my email and password
+* As A quiz creator I'm able to create a quiz
+* As A participant I'm able to view available quizzes
+* As A participant I'm able to join a given quiz
+* As A participant I'm able to answer to quiz questions
+* As A participant I'm able to view My scores and streak score
+* As User I can view the leaderboard.
 
-## Quick run
+## Api Endpoints, payload/responses
+
+```
+1. POST /users/register: Register a new user
+```
+
+paylaod,  all validations where implemented
+
+```js
+{
+  "email": "user1@gmail.com",
+  "password": "Password@123",
+  "username": "Doe"
+}
+```
+
+Response 
+
+```js
+{
+	"confirmation": "You have successfully registed"
+}
+```
+
+```
+2. POST /users/login: Log in a user.
+```
+Paylaod
+
+```js
+{
+  "email": "user1@gmail.com",
+  "password": "Password@123"
+}
+```
+
+Response : 
+```js
+{
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJ1c2VyIiwiX19lbnRpdHkiOiJSb2xlIn0sInNlc3Npb25JZCI6NDAsImlhdCI6MTcwMjkwODQ3MiwiZXhwIjoxNzAyOTA5MzcyfQ.1umK6oy2WdAwNMwQe5tsNISx1v-0INdcaMKU1FmfNW0"
+}
+```
+
+```
+3. POST /quizzes: Create a new quiz.
+```
+
+Paylaod :
+```js
+{
+	"title": "Programming",
+	"questions": [
+		{
+			"text": "What is an PHP",
+			"options": [
+				{
+					"text": "A Programming language",
+					"isCorrect": true
+				},
+				{
+					"text": "A country",
+					"isCorrect": false
+				}
+			]
+		},
+		{
+			"text": "What is css",
+			"options": [
+				{
+					"text": "A styling language",
+					"isCorrect": true
+				},
+				{
+					"text": "A snake",
+					"isCorrect": false
+				}
+			]
+		}
+	]
+}
+```
+
+Response : 
+
+```js
+
+{
+	"quizID": 17,
+	"confirmation": "Quiz created successfully"
+}
+```
+
+```
+4. GET /quizzes: List all available quizzes.
+```
+
+Response
+
+```js
+[
+	{
+		"id": 1,
+		"title": "Geography",
+		"status": "ongoing",
+		"startTime": "2023-12-17T19:39:48.020Z",
+		"endTime": "2023-12-17T20:39:48.020Z",
+		"streakBonus": 5,
+		"createdAt": "2023-12-17T18:39:48.056Z",
+		"updatedAt": "2023-12-17T18:39:48.056Z",
+		"deletedAt": null
+	}
+]
+```
+
+```
+ 5. GET /quizzes/:id: Get details of a specific quiz.
+```
+Response : 
+
+```js
+{
+	"id": 1,
+	"title": "Geography",
+	"status": "completed",
+	"startTime": "2023-12-17T19:39:48.020Z",
+	"endTime": "2023-12-17T20:39:48.020Z",
+	"streakBonus": 5,
+	"createdAt": "2023-12-17T18:39:48.056Z",
+	"updatedAt": "2023-12-17T20:00:00.169Z",
+	"deletedAt": null,
+	"questions": [
+		{
+			"id": 1,
+			"text": "What is an ocean",
+			"createdAt": "2023-12-17T18:39:48.056Z",
+			"updatedAt": "2023-12-17T18:39:48.056Z",
+			"deletedAt": null,
+			"options": [
+				{
+					"id": 1,
+					"text": "A big water entity",
+					"isCorrect": true,
+					"createdAt": "2023-12-17T18:39:48.056Z",
+					"updatedAt": "2023-12-17T18:39:48.056Z",
+					"deletedAt": null,
+					"__entity": "OptionEntity"
+				},
+				{
+					"id": 2,
+					"text": "A country",
+					"isCorrect": false,
+					"createdAt": "2023-12-17T18:39:48.056Z",
+					"updatedAt": "2023-12-17T18:39:48.056Z",
+					"deletedAt": null,
+					"__entity": "OptionEntity"
+				}
+			],
+			"__entity": "QuestionEntity"
+		},
+		{
+			"id": 2,
+			"text": "What is Africa",
+			"createdAt": "2023-12-17T18:39:48.056Z",
+			"updatedAt": "2023-12-17T18:39:48.056Z",
+			"deletedAt": null,
+			"options": [
+				{
+					"id": 3,
+					"text": "A continent",
+					"isCorrect": true,
+					"createdAt": "2023-12-17T18:39:48.056Z",
+					"updatedAt": "2023-12-17T18:39:48.056Z",
+					"deletedAt": null,
+					"__entity": "OptionEntity"
+				},
+				{
+					"id": 4,
+					"text": "A type of bird",
+					"isCorrect": false,
+					"createdAt": "2023-12-17T18:39:48.056Z",
+					"updatedAt": "2023-12-17T18:39:48.056Z",
+					"deletedAt": null,
+					"__entity": "OptionEntity"
+				}
+			],
+			"__entity": "QuestionEntity"
+		}
+	]
+}
+```
+
+```
+ 6. POST /quizzes/:id/participate: Join a quiz.
+```
+* The Id will be provided in the params
+
+Response : 
+
+```js
+{
+	"confirmation": "Successfully joined the quiz with ID 1",
+	"questions": [
+		{
+			"id": 1,
+			"text": "What is an ocean",
+			"createdAt": "2023-12-17T18:39:48.056Z",
+			"updatedAt": "2023-12-17T18:39:48.056Z",
+			"deletedAt": null,
+			"__entity": "QuestionEntity"
+		},
+		{
+			"id": 2,
+			"text": "What is Africa",
+			"createdAt": "2023-12-17T18:39:48.056Z",
+			"updatedAt": "2023-12-17T18:39:48.056Z",
+			"deletedAt": null,
+			"__entity": "QuestionEntity"
+		}
+	]
+}
+```
+
+```
+7. POST /quizzes/:id/answer: Submit an answer for a quiz question.
+```
+
+Payload : 
+
+```js
+{
+	"questionId": 1,
+	"selectedOption": 1
+}
+```
+
+Response : 
+
+```js
+{
+	"confirmation": "You have successful submitted your answer"
+}
+```
+
+```
+8. GET /quizzes/:id/score: Get the current score of the participant in a quiz.
+```
+
+Response : 
+
+```js
+{
+	"currentScore": 1,
+	"streakScore": 6
+}
+```
+
+```
+9. GET /leaderboard: View the leaderboard for quizzes.
+```
+
+Response : 
+
+```js
+[
+	{
+		"participantId": 1,
+		"username": "John",
+		"score": 1
+	},
+	{
+		"participantId": 2,
+		"username": "Doe",
+		"score": 0
+	}
+]
+```
+## Quick Setup
+
+1. With Docker 
+
+`
+After Cloning the repository, run the following commands
+`
+
+```bash
+docker compose up -d postgres api
+```
+
+`To load the .env, there's env.example in the folder structure.
+If you postgres server is up and running you should be able to connect wo the db
+`
+
+2. Run the Nats server with the following command
+
+```bash
+docker run -p 4222:4222 -p 8222:8222 nats-streaming -m 8222 -cid 'my-cluster' -SD
+```
+
+3. run the app locally
+
+`
+After Cloning the repository, run the following commands
+`
+
+```js
+. npm install
+
+. npm run start:dev
+
+```
+
+`
+If you encouter any issue with the followiing package 
+`
+
+```js
+@nestjs-plugins/nestjs-nats-streaming-transport
+```
+
+`Please consider running it with --force commande as follow : `
+
+```
+npm install @nestjs-plugins/nestjs-nats-streaming-transport --force
+```
+`
+This is just work a round, but in a real project this should be fixed properly.
+`
+
+## Run tests
+
+`
+Time reason unfotunately we did not cover all the test senarios, but we have implemented a few testing cases.
+`
+
+```bash
+- npmm run test:e2e :  to run the end to end tests
+- npm run test:unitest : to run the unitest cases
+- npm run test:integration : to run the integration tests
+```
+
+
 
 ```bash
 git clone --depth 1 https://github.com/brocoders/nestjs-boilerplate.git my-app
@@ -89,85 +405,8 @@ npm run seed:run
 npm run start:dev
 ```
 
-## Links
+`You will find an exhaustive documentation on swager after running the app on your specified port it should be`
 
-- Swagger: <http://localhost:3000/docs>
-- Adminer (client for DB): <http://localhost:8080>
-- Maildev: <http://localhost:1080>
-
-## Automatic update of dependencies
-
-If you want to automatically update dependencies, you can connect [Renovate](https://github.com/marketplace/renovate) for your project.
-
-## Database utils
-
-Generate migration
-
-```bash
-npm run migration:generate -- src/database/migrations/CreateNameTable
+```js
+http://localhost:yourPort/docs
 ```
-
-Run migration
-
-```bash
-npm run migration:run
-```
-
-Revert migration
-
-```bash
-npm run migration:revert
-```
-
-Drop all tables in database
-
-```bash
-npm run schema:drop
-```
-
-Run seed
-
-```bash
-npm run seed:run
-```
-
-## Tests
-
-```bash
-# unit tests
-npm run test
-
-# e2e tests
-npm run test:e2e
-```
-
-## Tests in Docker
-
-```bash
-docker compose -f docker-compose.ci.yaml --env-file env-example -p ci up --build --exit-code-from api && docker compose -p ci rm -svf
-```
-
-## Test benchmarking
-
-```bash
-docker run --rm jordi/ab -n 100 -c 100 -T application/json -H "Authorization: Bearer USER_TOKEN" -v 2 http://<server_ip>:3000/api/v1/users
-```
-
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Shchepotin"><img src="https://avatars.githubusercontent.com/u/6001723?v=4?s=100" width="100px;" alt="Vladyslav Shchepotin"/><br /><sub><b>Vladyslav Shchepotin</b></sub></a><br /><a href="#maintenance-Shchepotin" title="Maintenance">🚧</a> <a href="#doc-Shchepotin" title="Documentation">📖</a> <a href="#code-Shchepotin" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/SergeiLomako"><img src="https://avatars.githubusercontent.com/u/31205374?v=4?s=100" width="100px;" alt="SergeiLomako"/><br /><sub><b>SergeiLomako</b></sub></a><br /><a href="#code-SergeiLomako" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->

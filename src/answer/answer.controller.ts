@@ -1,7 +1,7 @@
 // answer.controller.ts
 
 import { Controller, Post, Body, Param, Get, NotFoundException, Request, UseGuards, SerializeOptions } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiHeader } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { EventPattern, Payload, Ctx } from '@nestjs/microservices';
 import { NatsStreamingContext } from '@nestjs-plugins/nestjs-nats-streaming-transport';
@@ -15,6 +15,13 @@ import { AnswerEntity } from './entities/answer.entity';
 import { Patterns } from '../contants/events.enum'
 
 
+@ApiBearerAuth()
+@ApiTags('Quiz')
+@ApiHeader({
+  name: 'Authorization',
+  description: 'Bearer token',
+  required: true,
+})
 @Roles(RoleEnum.participant)
 @Controller({
   path: 'quizzes',
@@ -23,7 +30,6 @@ import { Patterns } from '../contants/events.enum'
 export class AnswerController {
   constructor(private readonly answerService: AnswerService) { }
 
-  @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @SerializeOptions({
     groups: ['participant'],
@@ -41,7 +47,7 @@ export class AnswerController {
   }
 
 
-  @ApiBearerAuth()
+  
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @SerializeOptions({
     groups: ['participant'],

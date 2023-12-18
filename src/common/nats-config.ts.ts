@@ -6,6 +6,6 @@ export const natsStreamingTransport = NatsStreamingTransport.register({
   clientId: 'user-service-publisher',
   clusterId: 'my-cluster',
   connectOptions: {
-    url: 'http://127.0.0.1:4222',
+    url: process.env.NATS_SERVER_URL
   },
 });

@@ -3,12 +3,10 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   UseGuards,
   HttpStatus,
   HttpCode,
-  SerializeOptions,
   Request,
 } from '@nestjs/common';
 import { EventPattern, Payload, Ctx } from '@nestjs/microservices';
@@ -16,8 +14,7 @@ import { NatsStreamingContext } from '@nestjs-plugins/nestjs-nats-streaming-tran
 
 import { QuizService } from './quiz.service';
 import { CreateQuizDto } from './dto/create-quiz.dto';
-import { UpdateQuizDto } from './dto/update-quiz.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiHeader } from '@nestjs/swagger';
 import { Roles } from '../roles/roles.decorator';
 import { RoleEnum } from '../roles/roles.enum';
 import { AuthGuard } from '@nestjs/passport';
@@ -26,6 +23,12 @@ import { QuizEntity } from './entities/quiz.entity';
 import { Patterns } from '../contants/events.enum'
 
 
+@ApiBearerAuth()
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'Bearer token',
+    required: true,
+  })
 @ApiTags('Quiz')
 @Controller({
   path: 'quizzes',
@@ -34,7 +37,6 @@ import { Patterns } from '../contants/events.enum'
 export class QuizController {
   constructor(private readonly QuizService: QuizService) { }
 
-  @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   @Post()
   @HttpCode(HttpStatus.CREATED)
@@ -50,7 +52,6 @@ export class QuizController {
     context.message.ack()
   }
 
-  @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   @Get()
   @HttpCode(HttpStatus.OK)
@@ -58,7 +59,6 @@ export class QuizController {
     return this.QuizService.getAvailableQuizzes()
   }
 
-  @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   @HttpCode(HttpStatus.OK)
@@ -71,7 +71,6 @@ export class QuizController {
 
   }
 
-  @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   @Roles(RoleEnum.participant)
   @UseGuards(RolesGuard)
@@ -84,19 +83,5 @@ export class QuizController {
     } catch (error) {
       throw error
     }
-  }
-
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
-  @SerializeOptions({
-    groups: ['creator'],
-  })
-  @Patch(':id')
-  @HttpCode(HttpStatus.OK)
-  update(
-    @Param('id') id: number,
-    @Body() updateQuizDto: UpdateQuizDto | any,
-  ): Promise<QuizEntity> {
-    return this.QuizService.update(id, updateQuizDto);
   }
 }

@@ -117,12 +117,6 @@ export class AuthService {
     return { confirmation: "You have successfully registed" }
   }
 
-  async me(userJwtPayload: JwtPayloadType): Promise<NullableType<UserEntity>> {
-    return this.usersService.findOne({
-      id: userJwtPayload.id,
-    });
-  }
-
   async update(
     userJwtPayload: JwtPayloadType,
     userDto: AuthUpdateDto,
@@ -211,17 +205,6 @@ export class AuthService {
       token,
     };
   }
-
-  async softDelete(user: UserEntity): Promise<void> {
-    await this.usersService.softDelete(user.id);
-  }
-
-  async logout(data: Pick<JwtRefreshPayloadType, 'sessionId'>) {
-    return this.sessionService.softDelete({
-      id: data.sessionId,
-    });
-  }
-
   private async getTokensData(data: {
     id: UserEntity['id'];
     role: UserEntity['role'];
