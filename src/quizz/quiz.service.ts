@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository, EntityManager, LessThanOrEqual, MoreThanOrEqual, In } from 'typeorm';
-import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+// import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 
 import { CreateQuizDto } from './dto/create-quiz.dto';
 import { LeaderboardDto } from './dto/leaderboard.dto'
@@ -32,7 +32,7 @@ export class QuizService {
     private participantRepository: Repository<ParticipantEntity>,
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
-    private publisher: Publisher
+    // private publisher: Publisher
   ) { }
 
 
@@ -80,9 +80,9 @@ export class QuizService {
       creatorUser.role = RoleEnum.creator;
       await this.userRepository.save(creatorUser);
 
-      this.publisher.emit(Patterns.quizCreated, { quiz: savedQuiz.id, user: creatorUser.username }).subscribe(guid => {
-        console.log(`*** Published quiz : ${savedQuiz.id},  Creator: ${creatorUser.username} ***`)
-      })
+      // this.publisher.emit(Patterns.quizCreated, { quiz: savedQuiz.id, user: creatorUser.username }).subscribe(guid => {
+      //   console.log(`*** Published quiz : ${savedQuiz.id},  Creator: ${creatorUser.username} ***`)
+      // })
 
       return { quizID: savedQuiz.id, confirmation: "Quiz created successfully" }
     });

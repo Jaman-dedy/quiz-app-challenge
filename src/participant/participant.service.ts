@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, ConflictException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+// import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 
 import { CreateParticipantDto } from './dto/create-participant.dto';
 import { ParticipantEntity } from './entities/participant.entity';
@@ -23,7 +23,7 @@ export class ParticipantService {
     private quizRepository: Repository<QuizEntity>,
     @InjectRepository(QuestionEntity)
     private questionRepository: Repository<QuestionEntity>,
-    private publisher: Publisher
+    // private publisher: Publisher
   ) { }
 
   async joinQuiz(data: CreateParticipantDto): Promise<{ confirmation: string; questions: QuestionEntity[] }> {
@@ -61,9 +61,9 @@ export class ParticipantService {
     participantUser.role = RoleEnum.participant
     await this.userRepository.save(participantUser);
 
-    this.publisher.emit(Patterns.newParticipant, { participant: userId, quiz: quizId }).subscribe(guid => {
-      console.log(`*** New participant : ${userId},  Has joined quiz: ${quizId} ***`)
-    })
+    // this.publisher.emit(Patterns.newParticipant, { participant: userId, quiz: quizId }).subscribe(guid => {
+    //   console.log(`*** New participant : ${userId},  Has joined quiz: ${quizId} ***`)
+    // })
 
     const questions = await this.questionRepository.find({ where: { quiz: {id: quiz.id} } });
 

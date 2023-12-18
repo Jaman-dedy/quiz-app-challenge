@@ -8,9 +8,6 @@ RUN npm install -g @nestjs/cli typescript ts-node
 COPY package*.json /tmp/app/
 RUN cd /tmp/app && npm install
 
-# Forcefully install @nestjs-plugins/nestjs-nats-streaming-transport with --force flag
-RUN npm install @nestjs-plugins/nestjs-nats-streaming-transport@1.2.0 --force
-
 # Copy the application code
 COPY . /usr/src/app
 

@@ -10,7 +10,7 @@ import {
   Request,
 } from '@nestjs/common';
 import { EventPattern, Payload, Ctx } from '@nestjs/microservices';
-import { NatsStreamingContext } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+// import { NatsStreamingContext } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 
 import { QuizService } from './quiz.service';
 import { CreateQuizDto } from './dto/create-quiz.dto';
@@ -46,11 +46,11 @@ export class QuizController {
     return await this.QuizService.createAllQuiz(createQuizzDto, userId, streakBonus);
   }
 
-  @EventPattern(Patterns.quizCreated)
-  public async stationCreatedHandler(@Payload() data: { quiz: number, user: string }, @Ctx() context: NatsStreamingContext) {
-    console.log(`-- Received quiz: ${data.quiz}, Creator: ${data.user} ---`)
-    context.message.ack()
-  }
+  // @EventPattern(Patterns.quizCreated)
+  // public async stationCreatedHandler(@Payload() data: { quiz: number, user: string }, @Ctx() context: NatsStreamingContext) {
+  //   console.log(`-- Received quiz: ${data.quiz}, Creator: ${data.user} ---`)
+  //   context.message.ack()
+  // }
 
   @UseGuards(AuthGuard('jwt'))
   @Get()

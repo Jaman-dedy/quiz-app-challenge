@@ -12,26 +12,26 @@ import validationOptions from './utils/validation-options';
 import { AllConfigType } from './config/config.type';
 
 import { CustomStrategy } from '@nestjs/microservices';
-import { Listener } from '@nestjs-plugins/nestjs-nats-streaming-transport'
+// import { Listener } from '@nestjs-plugins/nestjs-nats-streaming-transport'
 
 
 async function bootstrap() {
 
-  const natssOptions: CustomStrategy = {
-    strategy: new Listener(
-      'my-cluster',
-      'user-service-listener',
-      'user-service-group',
-      {
-        url: process.env.NATS_SERVER_URL
-      } /* TransportConnectOptions */,
-      {
-        durableName: 'user-queue-group',
-        manualAckMode: true,
-        deliverAllAvailable: true,
-      } /* TransportSubscriptionOptions */ ,
-    ),
-  };
+  // const natssOptions: CustomStrategy = {
+  //   strategy: new Listener(
+  //     'my-cluster',
+  //     'user-service-listener',
+  //     'user-service-group',
+  //     {
+  //       url: process.env.NATS_SERVER_URL
+  //     } /* TransportConnectOptions */,
+  //     {
+  //       durableName: 'user-queue-group',
+  //       manualAckMode: true,
+  //       deliverAllAvailable: true,
+  //     } /* TransportSubscriptionOptions */ ,
+  //   ),
+  // };
 
   const app = await NestFactory.create(AppModule, { cors: true });
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
@@ -61,9 +61,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
 
-  const microService = app.connectMicroservice(natssOptions)
+  // const microService = app.connectMicroservice(natssOptions)
   
-  await microService.listen()
+  // await microService.listen()
   await app.listen(configService.getOrThrow('app.port', { infer: true }));
 }
 void bootstrap();

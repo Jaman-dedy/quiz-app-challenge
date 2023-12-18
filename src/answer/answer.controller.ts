@@ -4,7 +4,7 @@ import { Controller, Post, Body, Param, Get, NotFoundException, Request, UseGuar
 import { ApiBearerAuth, ApiTags, ApiHeader } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { EventPattern, Payload, Ctx } from '@nestjs/microservices';
-import { NatsStreamingContext } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+// import { NatsStreamingContext } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 
 import { RolesGuard } from '../roles/roles.guard';
 import { RoleEnum } from '../roles/roles.enum';
@@ -40,14 +40,12 @@ export class AnswerController {
     return this.answerService.createAnswer({ ...createAnswerDto, userId, quizId });
   }
 
-  @EventPattern(Patterns.answerSubmitted)
-  public async stationCreatedHandler(@Payload() data: { answer: number, user: string }, @Ctx() context: NatsStreamingContext) {
-    console.log(`-- Received answer: ${data.answer}, Creator: ${data.user} ---`)
-    context.message.ack()
-  }
+  // @EventPattern(Patterns.answerSubmitted)
+  // public async stationCreatedHandler(@Payload() data: { answer: number, user: string }, @Ctx() context: NatsStreamingContext) {
+  //   console.log(`-- Received answer: ${data.answer}, Creator: ${data.user} ---`)
+  //   context.message.ack()
+  // }
 
-
-  
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @SerializeOptions({
     groups: ['participant'],

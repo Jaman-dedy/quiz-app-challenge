@@ -305,9 +305,16 @@ Response :
 `
 After Cloning the repository, run the following commands
 `
+`Make sure to update the host in the .env file`
+
+```
+DATABASE_HOST=quizz-app-postgres-1
+
+```
 
 ```bash
 docker compose up -d postgres api
+
 ```
 
 `To load the .env, there's env.example in the folder structure.
@@ -331,78 +338,18 @@ After Cloning the repository, run the following commands
 
 . npm run start:dev
 
-```
+. npm run migration:run
 
-`
-If you encouter any issue with the followiing package 
-`
-
-```js
-@nestjs-plugins/nestjs-nats-streaming-transport
-```
-
-`Please consider running it with --force commande as follow : `
+. npm run seed:run
 
 ```
-npm install @nestjs-plugins/nestjs-nats-streaming-transport --force
-```
-`
-This is just work a round, but in a real project this should be fixed properly.
-`
-
 ## Run tests
 
-`
-Time reason unfotunately we did not cover all the test senarios, but we have implemented a few testing cases.
-`
 
 ```bash
 - npmm run test:e2e :  to run the end to end tests
 - npm run test:unitest : to run the unitest cases
 - npm run test:integration : to run the integration tests
-```
-
-
-
-```bash
-git clone --depth 1 https://github.com/brocoders/nestjs-boilerplate.git my-app
-cd my-app/
-cp env-example .env
-docker compose up -d
-```
-
-For check status run
-
-```bash
-docker compose logs
-```
-
-## Comfortable development
-
-```bash
-git clone --depth 1 https://github.com/brocoders/nestjs-boilerplate.git my-app
-cd my-app/
-cp env-example .env
-```
-
-Change `DATABASE_HOST=postgres` to `DATABASE_HOST=localhost`
-
-Change `MAIL_HOST=maildev` to `MAIL_HOST=localhost`
-
-Run additional container:
-
-```bash
-docker compose up -d postgres adminer maildev
-```
-
-```bash
-npm install
-
-npm run migration:run
-
-npm run seed:run
-
-npm run start:dev
 ```
 
 `You will find an exhaustive documentation on swager after running the app on your specified port it should be`

@@ -21,7 +21,7 @@ import { OptionModule } from './options/options.module';
 import { ParticipantModule } from './participant/participant.module';
 import { AnswerModule } from './answer/answer.module';
 
-import { natsStreamingTransport } from './common/nats-config.ts'
+// import { natsStreamingTransport } from './common/nats-config.ts'
 
 @Module({
   imports: [
@@ -63,7 +63,7 @@ import { natsStreamingTransport } from './common/nats-config.ts'
       imports: [ConfigModule],
       inject: [ConfigService],
     }),
-    natsStreamingTransport,
+    // natsStreamingTransport,
     UsersModule,
     AuthModule,
     SessionModule,

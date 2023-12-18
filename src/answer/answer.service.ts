@@ -3,7 +3,7 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
+// import { Publisher } from '@nestjs-plugins/nestjs-nats-streaming-transport';
 
 import { AnswerEntity } from './entities/answer.entity';
 import { CreateAnswerDto } from './dto/create-answer.dto';
@@ -30,7 +30,7 @@ export class AnswerService {
     private readonly questionRepository: Repository<QuestionEntity>,
     @InjectRepository(OptionEntity)
     private readonly optionRepository: Repository<OptionEntity>,
-    private publisher: Publisher
+    // private publisher: Publisher
   ) { }
 
   async createAnswer(createAnswerDto: CreateAnswerDto | any): Promise<AnswerEntity | { confirmation: string }> {
@@ -83,9 +83,9 @@ export class AnswerService {
 
     await this.optionRepository.save(userOption);
 
-    this.publisher.emit(Patterns.answerSubmitted, { answer: savedAnswer.id, user: userId }).subscribe(guid => {
-      console.log(`*** Submitted answer by : ${savedAnswer.id},  By: ${userId} ***`)
-    })
+    // this.publisher.emit(Patterns.answerSubmitted, { answer: savedAnswer.id, user: userId }).subscribe(guid => {
+    //   console.log(`*** Submitted answer by : ${savedAnswer.id},  By: ${userId} ***`)
+    // })
 
     return { confirmation: "You have successful submitted your answer" };
   }

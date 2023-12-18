@@ -12,11 +12,10 @@ import { OptionEntity } from '../options/entities/options.entity';
 import { UserEntity } from '../users/entities/user.entity'
 import { ParticipantEntity } from '../participant/entities/participant.entity';
 import { LeaderboardController } from './leaderboard.controller'
-import { natsStreamingTransport } from '../common/nats-config.ts'
+// import { natsStreamingTransport } from '../common/nats-config.ts'
 
 @Module({
   imports: [
-    natsStreamingTransport,
     TypeOrmModule.forFeature(
       [
         QuizEntity,
