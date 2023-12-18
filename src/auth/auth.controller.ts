@@ -37,7 +37,7 @@ export class AuthController {
   public login(
     @Body() loginDto: AuthEmailLoginDto,
   ): Promise<LoginResponseType> {
-    return this.service.validateLogin(loginDto);
+    return this.service.login(loginDto);
   }
 
   @Post('register')

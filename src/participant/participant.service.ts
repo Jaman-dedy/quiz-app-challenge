@@ -8,7 +8,7 @@ import { ParticipantEntity } from './entities/participant.entity';
 import { UserEntity } from '../users/entities/user.entity';
 import { QuizEntity } from '../quizz/entities/quiz.entity';
 import { QuestionEntity } from '../questions/entities/questions.entity';
-import { RoleEnum } from 'src/roles/roles.enum';
+import { RoleEnum } from '../roles/roles.enum';
 
 import { Patterns } from '../contants/events.enum'
 

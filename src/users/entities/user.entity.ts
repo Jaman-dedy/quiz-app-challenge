@@ -17,9 +17,9 @@ import { Exclude, Expose } from 'class-transformer';
 
 import { EntityHelper } from '../../utils/entity-helper';
 import { Role } from '../../roles/entities/role.entity';
-import { QuizEntity } from 'src/quizz/entities/quiz.entity';
+import { QuizEntity } from '../../quizz/entities/quiz.entity';
 import {ParticipantEntity} from '../../participant/entities/participant.entity'
-import { AnswerEntity } from '../../answer/entities/answer.entity';
+
 
 @Entity()
 export class UserEntity extends EntityHelper {

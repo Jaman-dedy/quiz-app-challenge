@@ -11,7 +11,7 @@ import { QuestionEntity } from '../questions/entities/questions.entity';
 import { OptionEntity } from '../options/entities/options.entity';
 import { ParticipantEntity } from '../participant/entities/participant.entity';
 import { UserEntity } from '../users/entities/user.entity';
-import { RoleEnum } from 'src/roles/roles.enum';
+import { RoleEnum } from '../roles/roles.enum';
 import { QuizStatus } from './quiz.enum'
 import { Patterns } from '../contants/events.enum'
 

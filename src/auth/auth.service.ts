@@ -11,10 +11,7 @@ import bcrypt from 'bcryptjs';
 import { AuthEmailLoginDto } from './dto/auth-email-login.dto';
 import { AuthUpdateDto } from './dto/auth-update.dto';
 import { RoleEnum } from '../roles/roles.enum';
-import { plainToClass } from 'class-transformer';
 import { Role } from '../roles/entities/role.entity';
-import { AuthProvidersEnum } from './auth-providers.enum';
-import { SocialInterface } from '../social/interfaces/social.interface';
 import { AuthRegisterLoginDto } from './dto/auth-register-login.dto';
 import { UsersService } from '../users/users.service';
 import { NullableType } from '../utils/types/nullable.type';
@@ -35,7 +32,7 @@ export class AuthService {
     private configService: ConfigService<AllConfigType>,
   ) { }
 
-  async validateLogin(loginDto: AuthEmailLoginDto): Promise<LoginResponseType> {
+  async login(loginDto: AuthEmailLoginDto): Promise<LoginResponseType> {
     const user = await this.usersService.findOne({
       email: loginDto.email,
     });
@@ -73,7 +70,7 @@ export class AuthService {
       user,
     });
 
-    const { token, refreshToken, tokenExpires } = await this.getTokensData({
+    const { token} = await this.getTokensData({
       id: user.id,
       role: user.role,
       sessionId: session.id,
@@ -102,10 +99,8 @@ export class AuthService {
 
   private extractToken(req: Request): string | null {
     const authHeader = req.headers['authorization'];
-    console.log('authHeader :>> ', authHeader);
-
     if (authHeader && authHeader.startsWith('Bearer ')) {
-      return authHeader.slice(7); // Remove 'Bearer ' prefix
+      return authHeader.slice(7);
     }
 
     return null;
